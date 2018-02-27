@@ -112,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AI\Intents\IIntent.cs" />
+    <Compile Include="AI\Intents\SobreBot.cs" />
     <Compile Include="AI\Intents\None.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="AI\Intent.cs" />
