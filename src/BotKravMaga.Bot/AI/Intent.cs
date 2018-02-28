@@ -1,8 +1,11 @@
-﻿using Microsoft.Bot.Builder.Dialogs;
+﻿using BotKravMaga.Bot.AI.Intents;
+using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Luis.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -20,10 +23,18 @@ namespace BotKravMaga.Bot.AI
         public const string FAIXAS_KRAV_MAGA = "faixas-krav-maga";
         public const string DEFINICAO_KRAV_MAGA = "definicao-krav-maga";
 
-        public static Task ProcessAsync(string intent, IDialogContext context, LuisResult result)
+        public static async Task ProcessAsync(string intent, IDialogContext context, LuisResult result)
         {
-            Type t = null; // find intent
-            return (Task)Activator.CreateInstance(t);
+            var intentType = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(type =>
+                type.IsClass
+                && type.IsSubclassOf(typeof(IIntent))
+                && ((IIntent)type).Intent == intent
+                && type.GetCustomAttribute<CompilerGeneratedAttribute>() == null);
+
+            if (intentType == null)
+                throw new Exception("Intenção não encontrada");
+
+            await ((IIntent)Activator.CreateInstance(intentType)).ProcessAsync(context, result);
         }
     }
 }

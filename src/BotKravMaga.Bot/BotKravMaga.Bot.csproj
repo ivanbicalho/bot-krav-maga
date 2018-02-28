@@ -112,6 +112,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AI\Intents\IIntent.cs" />
+    <Compile Include="AI\Intents\SobreMestreKobi.cs" />
+    <Compile Include="AI\Intents\SobreCriador.cs" />
+    <Compile Include="AI\Intents\ReconhecerLogo.cs" />
+    <Compile Include="AI\Intents\FaixasKravMaga.cs" />
+    <Compile Include="AI\Intents\DefinicaoKravMaga.cs" />
+    <Compile Include="AI\Intents\Saudacao.cs" />
+    <Compile Include="AI\Intents\OndeTreinar.cs" />
     <Compile Include="AI\Intents\SobreBot.cs" />
     <Compile Include="AI\Intents\None.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
