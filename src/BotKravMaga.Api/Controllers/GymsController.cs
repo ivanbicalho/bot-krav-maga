@@ -16,7 +16,7 @@ namespace BotKravMaga.Api.Controllers
         [Route("")]
         public HttpResponseMessage GetGyms()
         {
-            var gyms = new DBGym().GetAll(); // Mock Database Request
+            var gyms = DBGym.GetAll(); // Mock Database Request
 
             return Request.CreateResponse(gyms);
         }

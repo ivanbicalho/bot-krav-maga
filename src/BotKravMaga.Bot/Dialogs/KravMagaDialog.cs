@@ -14,7 +14,7 @@ namespace BotKravMaga.Bot.Dialogs
         public KravMagaDialog(ILuisService luisService)
             : base(luisService)
         {
-        }
+        }        
 
         [LuisIntent(Intent.NONE)]
         public async Task NoneAsync(IDialogContext context, LuisResult result)

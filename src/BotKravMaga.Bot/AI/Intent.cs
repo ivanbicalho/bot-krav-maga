@@ -13,7 +13,7 @@ namespace BotKravMaga.Bot.AI
 {
     public static class Intent
     {
-        public const string NONE = "None";
+        public const string NONE = "";
         public const string SOBRE_O_BOT = "sobre-o-bot";
         public const string SOBRE_MESTRE_KOBI = "sobre-mestre-kobi";
         public const string ONDE_TREINAR = "onde-treinar";
@@ -25,16 +25,22 @@ namespace BotKravMaga.Bot.AI
 
         public static async Task ProcessAsync(string intent, IDialogContext context, LuisResult result)
         {
-            var intentType = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(type =>
+            var intentTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type =>
                 type.IsClass
-                && type.IsSubclassOf(typeof(IIntent))
-                && ((IIntent)type).Intent == intent
+                && typeof(IIntent).IsAssignableFrom(type)
                 && type.GetCustomAttribute<CompilerGeneratedAttribute>() == null);
 
-            if (intentType == null)
-                throw new Exception("Intenção não encontrada");
+            foreach (var intentType in intentTypes)
+            {
+                var instance = ((IIntent)Activator.CreateInstance(intentType));
+                if (instance.Intent == intent)
+                {
+                    await instance.ProcessAsync(context, result);
+                    return;
+                }
+            }
 
-            await ((IIntent)Activator.CreateInstance(intentType)).ProcessAsync(context, result);
+            throw new Exception("Intenção não encontrada");
         }
     }
 }

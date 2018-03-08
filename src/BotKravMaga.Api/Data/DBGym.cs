@@ -10,7 +10,7 @@ namespace BotKravMaga.Api.Data
     {
         private static IEnumerable<Gym> _gyms = LoadGyms();
 
-        public IEnumerable<Gym> GetAll()
+        public static IEnumerable<Gym> GetAll()
         {
             return _gyms;
         }
