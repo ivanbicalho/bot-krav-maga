@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Luis.Models;
+using Microsoft.Bot.Connector;
 
 namespace BotKravMaga.Bot.AI.Intents
 {
@@ -14,7 +15,7 @@ namespace BotKravMaga.Bot.AI.Intents
 
         public async Task ProcessAsync(IDialogContext context, LuisResult result)
         {
-            await context.PostAsync(":( Foi mals, não entendi. Pode repetir, por favor?");
+            await context.PostAsync(":( Foi mals, não entendi o que você quis dizer. Pode repetir, por favor?");
             context.Done<string>(null);
         }
     }
