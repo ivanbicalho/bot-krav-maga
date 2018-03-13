@@ -15,7 +15,7 @@ namespace BotKravMaga.Bot.AI.Intents
 
         public async Task ProcessAsync(IDialogContext context, LuisResult result)
         {
-            await context.PostAsync("Opa, tudo bem? Eu sou o bot que sabe tudo sobre Krav-Magá! O que você gostaria de saber?");
+            await context.PostAsync("Opa, tudo bem? O que você gostaria de saber de Krav-Magá?");
             context.Done<string>(null);
         }
     }

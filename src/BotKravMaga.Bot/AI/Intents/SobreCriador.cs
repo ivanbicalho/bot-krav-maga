@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using BotKravMaga.Bot.Util;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Luis.Models;
 using Microsoft.Bot.Connector;
@@ -15,8 +17,28 @@ namespace BotKravMaga.Bot.AI.Intents
 
         public async Task ProcessAsync(IDialogContext context, LuisResult result)
         {
-            await context.PostAsync("Falar sobre o bot...");
+            var imageImi = context.MakeMessage();
+            imageImi.Attachments.Add(Images.Imi);
+
+            await context.PostAsync(imageImi)
+                .ContinueWith(ant => context.PostAsync("Imi Lichtenfeld é o seu nome. Ensinou a homens simples como utilizar o próprio corpo, transformando-os em soldados imbatíveis. A eficácia de seus ensinamentos surpreende e sua obra é reconhecida no mundo todo. Sua criação torna-se a filosofia de defesa do Estado de Israel e unidades militares de elite ao redor do mundo utilizam suas técnicas."))
+                .ContinueWith(ant => context.PostAsync("Algumas frases do Imi:"))
+                .ContinueWith(ant => context.PostAsync(PhrasesImi()));
+
             context.Done<string>(null);
+        }
+
+        private static string PhrasesImi()
+        {
+            var message = new StringBuilder();
+
+            message.Append("**Seja bom o suficiente para evitar o conflito.**\n");
+            message.Append("**Resposta simples e natural para situação complicada.**\n");
+            message.Append("**Mínimo de movimento de defesa contra máximo movimento de ataque.**\n");
+            message.Append("**Faça: mas faça certo.**\n");
+            message.Append("**Reaja na proporção da necessidade.**\n");
+
+            return message.ToString();
         }
     }
 }
