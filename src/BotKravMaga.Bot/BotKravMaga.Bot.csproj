@@ -122,12 +122,15 @@
     <Compile Include="AI\Intents\SobreBot.cs" />
     <Compile Include="AI\Intents\None.cs" />
     <Compile Include="Api\ApiGym.cs" />
+    <Compile Include="Api\ApiPrediction.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="AI\Intent.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Dialogs\KravMagaDialog.cs" />
     <Compile Include="Entity\Address.cs" />
+    <Compile Include="Entity\CustomVisionResult.cs" />
     <Compile Include="Entity\Gym.cs" />
+    <Compile Include="Entity\Prediction.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

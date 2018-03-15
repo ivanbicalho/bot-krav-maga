@@ -18,6 +18,16 @@ namespace BotKravMaga.Bot.Util
             get { return GetKey(nameof(LuisSubscriptionKey)); }
         }
 
+        public static string CustomVisionUrl
+        {
+            get { return GetKey(nameof(CustomVisionUrl)); }
+        }
+
+        public static string CustomVisionPredictionKey
+        {
+            get { return GetKey(nameof(CustomVisionPredictionKey)); }
+        }
+
 
         private static string GetKey(string key)
         {

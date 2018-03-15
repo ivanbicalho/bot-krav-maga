@@ -35,10 +35,9 @@ namespace BotKravMaga.Bot.AI.Intents
             foreach (var gym in gyms)
             {
                 message.Append($"**Academia:** {gym.Name}\n");
-                message.Append($"**Instrutores:** {string.Join(", ", gym.Instructors)}\n");
                 message.Append($"**Endereço:** {gym.Address}\n");
                 message.Append($"**Tel(s):** {string.Join(", ", gym.Phones)}\n");
-                message.Append("\n");
+                message.Append($"**Instrutores:** {string.Join(", ", gym.Instructors)}\n");
             }
 
             return message.ToString();
