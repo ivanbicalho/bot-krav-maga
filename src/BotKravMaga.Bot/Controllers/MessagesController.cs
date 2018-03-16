@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -16,6 +17,8 @@ namespace BotKravMaga.Bot
         {
             if (activity.Type == ActivityTypes.Message)
             {
+                await TypingAsync(activity);
+
                 var luisService = new LuisService(new LuisModelAttribute(Config.LuisId, Config.LuisSubscriptionKey));
                 await Conversation.SendAsync(activity, () => new Dialogs.KravMagaDialog(luisService));
             }
@@ -54,6 +57,18 @@ namespace BotKravMaga.Bot
             }
 
             return null;
+        }
+
+        private async static Task TypingAsync(Activity activity)
+        {
+            using (var connector = new ConnectorClient(new Uri(activity.ServiceUrl)))
+            {
+                var reply = activity.CreateReply();
+                reply.Type = ActivityTypes.Typing;
+                reply.Text = null;
+
+                await connector.Conversations.ReplyToActivityAsync(reply);
+            }
         }
     }
 }
