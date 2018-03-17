@@ -20,14 +20,5 @@ namespace BotKravMaga.Api.Controllers
 
             return Request.CreateResponse(gyms);
         }
-
-        //[HttpGet]
-        //[Route("search/{term}")]
-        //public HttpResponseMessage GetGym(string term)
-        //{
-        //    var gyms = new DBGym().GetAll(term); // Mock Database Request
-
-        //    return Request.CreateResponse(gyms);
-        //}
     }
 }

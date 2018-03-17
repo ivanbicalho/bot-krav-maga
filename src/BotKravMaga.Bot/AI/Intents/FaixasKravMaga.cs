@@ -19,11 +19,12 @@ namespace BotKravMaga.Bot.AI.Intents
             var imageGraduation = context.MakeMessage();
             imageGraduation.Attachments.Add(Images.Graduation);
 
-            await context.PostAsync("A graduação do Krav-Magá é composto das seguintes faixas:")
+            await context.PostAsync("A graduação do Krav-Magá é composta das seguintes faixas:")
+                .ContinueWith(task => ChatUtil.Typing(context, 500))
                 .ContinueWith(task => context.PostAsync("Branca, Amarela, Laranja, Verde, Azul, Marrom e Preta"))
-                .ContinueWith(task => ConversationUtil.Typing(context, 1000))
+                .ContinueWith(task => ChatUtil.Typing(context, 1000))
                 .ContinueWith(task => context.PostAsync("Na faixa preta, existem 5 dans e, após, existe ainda uma sequência da faixa branca e vermelha. Veja a imagem abaixo pra você entender um pouco melhor:"))
-                .ContinueWith(task => ConversationUtil.Typing(context, 1000))
+                .ContinueWith(task => ChatUtil.Typing(context, 1000))
                 .ContinueWith(task => context.PostAsync(imageGraduation));
 
             context.Done<string>(null);

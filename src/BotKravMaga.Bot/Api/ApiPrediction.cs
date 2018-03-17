@@ -14,7 +14,7 @@ namespace BotKravMaga.Bot.Api
 {
     public static class ApiPrediction
     {
-        public static async Task<bool> IsLogoKravMagaAsync(Uri url)
+        public static async Task<bool?> IsLogoKravMagaAsync(Uri url)
         {
             using (var client = new HttpClient())
             {
@@ -32,9 +32,13 @@ namespace BotKravMaga.Bot.Api
 
                 var responseString = await response.Content.ReadAsStringAsync();
                 var result = JsonConvert.DeserializeObject<CustomVisionResult>(responseString);
+
+                if (result.Id == null)
+                    return await Task.FromResult((bool?)null);
+
                 var prediction = result.Predictions?.OrderByDescending(c => c.Probability).FirstOrDefault();
-                
-                if (prediction?.Tag == "logo-krav-maga" && prediction?.Probability > 0.75)
+
+                if (prediction?.Tag == Prediction.Tags.LogoKravMaga && prediction?.Probability > 0.75)
                     return await Task.FromResult(true);
 
                 return await Task.FromResult(false);

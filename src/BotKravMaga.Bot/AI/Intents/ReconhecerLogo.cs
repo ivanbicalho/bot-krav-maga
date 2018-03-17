@@ -38,8 +38,14 @@ namespace BotKravMaga.Bot.AI.Intents
             }
 
             var isLogoKravMaga = await ApiPrediction.IsLogoKravMagaAsync(url);
-            await context.PostAsync(isLogoKravMaga ? "YES! Isso é um logo do Krav-Magá." : "NOPS! Isso não é um logo do Krav-Magá.");
+            if (!isLogoKravMaga.HasValue)
+            {
+                await context.PostAsync("Ops... Desculpa, não consegui verificar sua imagem... :/");
+                context.Done<string>(null);
+                return;
+            }
 
+            await context.PostAsync(isLogoKravMaga.Value ? "YES! Isso é um logo do Krav-Magá." : "NOPS! Isso não é um logo do Krav-Magá.");
             context.Done<string>(null);
         }
     }

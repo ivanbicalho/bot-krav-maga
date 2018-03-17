@@ -10,7 +10,7 @@ namespace BotKravMaga.Bot.Api
 {
     public static class ApiGym
     {
-        private static HttpClient httpClient = new HttpClient();
+        private static readonly HttpClient httpClient = new HttpClient();
         private const string URL_API = "https://botkravmaga.azurewebsites.net/api/gyms";
 
         public static async Task<IEnumerable<Gym>> GetAllGymsAsync()

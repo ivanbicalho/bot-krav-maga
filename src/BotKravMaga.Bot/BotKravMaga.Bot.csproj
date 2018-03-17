@@ -134,8 +134,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Util\ConversationUtil.cs" />
+    <Compile Include="Util\ChatUtil.cs" />
     <Compile Include="Util\Images.cs" />
     <Compile Include="Util\Config.cs" />
   </ItemGroup>

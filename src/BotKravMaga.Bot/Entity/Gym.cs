@@ -8,11 +8,8 @@ namespace BotKravMaga.Bot.Entity
     public class Gym
     {
         public string Name { get; set; }
-
         public IEnumerable<string> Instructors { get; set; }
-
         public Address Address { get; set; }
-
         public IEnumerable<string> Phones { get; set; }
     }
 }

@@ -8,8 +8,13 @@ using System.Web;
 
 namespace BotKravMaga.Bot.Util
 {
-    public static class ConversationUtil
+    public static class ChatUtil
     {
+        public static string NewLine
+        {
+            get { return "  \n"; }
+        }
+
         public static void Typing(IDialogContext context, int? milliseconds = null)
         {
             var message = context.MakeMessage();
