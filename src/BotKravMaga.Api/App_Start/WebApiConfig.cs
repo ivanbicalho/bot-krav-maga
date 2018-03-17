@@ -11,7 +11,7 @@ namespace BotKravMaga.Api
     {
         public static void Register(HttpConfiguration config)
         {
-            // Json settings
+            config.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
             config.Formatters.JsonFormatter.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             config.Formatters.JsonFormatter.SerializerSettings.Formatting = Formatting.Indented;
@@ -22,14 +22,7 @@ namespace BotKravMaga.Api
                 NullValueHandling = NullValueHandling.Ignore,
             };
 
-            // Web API routes
             config.MapHttpAttributeRoutes();
-
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
         }
     }
 }
