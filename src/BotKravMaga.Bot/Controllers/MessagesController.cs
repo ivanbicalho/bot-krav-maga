@@ -46,7 +46,7 @@ namespace BotKravMaga.Bot
                 using (var connector = new ConnectorClient(new Uri(activity.ServiceUrl)))
                 {
                     var reply = activity.CreateReply();
-                    reply.Text = GetInitialMessage();
+                    reply.Text = $"Olá, eu sou o Bot de Krav-Magá. Olha o que consigo te fornecer:{ChatUtil.NewLine}{ChatUtil.GetBotCapabilitiesMessage()}";
 
                     await connector.Conversations.ReplyToActivityAsync(reply);
                 }
@@ -63,20 +63,6 @@ namespace BotKravMaga.Bot
 
                 await connector.Conversations.ReplyToActivityAsync(reply);
             }
-        }
-
-        private static string GetInitialMessage()
-        {
-            var message = new StringBuilder($"Olá, eu sou o Bot de Krav-Magá. Olha o que consigo te fornecer:{ChatUtil.NewLine}");
-            message.Append($"* Falar um pouco sobre mim{ChatUtil.NewLine}");
-            message.Append($"* Sobre o Krav-Magá{ChatUtil.NewLine}");
-            message.Append($"* Sobre a graduação ou faixas do Krav-Magá{ChatUtil.NewLine}");
-            message.Append($"* Onde você pode treinar{ChatUtil.NewLine}");
-            message.Append($"* Sobre o criador do Krav-Magá{ChatUtil.NewLine}");
-            message.Append($"* Sobre a mestre{ChatUtil.NewLine}");
-            message.Append($"* Reconhecer se uma imagem é a logo do Krav-Magá");
-
-            return message.ToString();
         }
     }
 }
